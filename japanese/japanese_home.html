@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japonês em 100 Dias - Lições Diárias</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Japonês em 100 Dias</h1>
+            <p>Um curso de conversação em Japonês com uma lição por dia</p>
+            <div class="buttons">
+                <a href="../index.html" class="btn main-home">Home Principal</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Procurar por tema ou palavra-chave...">
+        </div>
+
+        <div class="lessons-grid" id="lessonsGrid">
+            <!-- As lições serão geradas via JavaScript -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Japonês em 100 Dias - Estude uma lição por dia e melhore sua conversação</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados das lições
+        const lessons = [
+            { id: 1, title: "Lição 01", theme: "Apresentações Pessoais" },
+            { id: 2, title: "Lição 02", theme: "Como Foi Seu Dia?" },
+            { id: 3, title: "Lição 03", theme: "Hobbies e Interesses" },
+            { id: 4, title: "Lição 04", theme: "Família e Amigos" },
+            { id: 5, title: "Lição 05", theme: "Rotina Diária" },
+            { id: 6, title: "Lição 06", theme: "Saudações Casuais" },
+            { id: 7, title: "Lição 07", theme: "Projetos de Programação" },
+            { id: 8, title: "Lição 08", theme: "Linguagens de Programação" },
+            { id: 9, title: "Lição 09", theme: "Origem e Cultura" },
+            { id: 10, title: "Lição 10", theme: "Fim de Semana" },
+            { id: 11, title: "Lição 11", theme: "Sonhos e Aspirações" },
+            { id: 12, title: "Lição 12", theme: "Histórias Engraçadas" },
+            { id: 13, title: "Lição 13", theme: "Viagens Recentes" },
+            { id: 14, title: "Lição 14", theme: "Música Favorita" },
+            { id: 15, title: "Lição 15", theme: "Filmes e Séries" },
+            { id: 16, title: "Lição 16", theme: "Comida Preferida" },
+            { id: 17, title: "Lição 17", theme: "Esportes e Atividades" },
+            { id: 18, title: "Lição 18", theme: "Trabalho dos Sonhos" },
+            { id: 19, title: "Lição 19", theme: "Tecnologia Favorita" },
+            { id: 20, title: "Lição 20", theme: "Primeiro Emprego" },
+            { id: 21, title: "Lição 21", theme: "Eventos Sociais" },
+            { id: 22, title: "Lição 22", theme: "Livros Favoritos" },
+            { id: 23, title: "Lição 23", theme: "Planos de Férias" },
+            { id: 24, title: "Lição 24", theme: "Memórias de Infância" },
+            { id: 25, title: "Lição 25", theme: "Amizades" },
+            { id: 26, title: "Lição 26", theme: "Festividades Locais" },
+            { id: 27, title: "Lição 27", theme: "Clima e Estações" },
+            { id: 28, title: "Lição 28", theme: "Hábitos Saudáveis" },
+            { id: 29, title: "Lição 29", theme: "Redes Sociais" },
+            { id: 30, title: "Lição 30", theme: "Aprendizado de Idiomas" },
+            { id: 31, title: "Lição 31", theme: "Desafios no Trabalho" },
+            { id: 32, title: "Lição 32", theme: "Projetos Pessoais" },
+            { id: 33, title: "Lição 33", theme: "Dia Mais Memorável" },
+            { id: 34, title: "Lição 34", theme: "Metas de Carreira" },
+            { id: 35, title: "Lição 35", theme: "Festas e Comemorações" },
+            { id: 36, title: "Lição 36", theme: "Viagem dos Sonhos" },
+            { id: 37, title: "Lição 37", theme: "Habilidade Favorita" },
+            { id: 38, title: "Lição 38", theme: "Cultura Pop" },
+            { id: 39, title: "Lição 39", theme: "Lugares Visitados" },
+            { id: 40, title: "Lição 40", theme: "Rotina de Programador" },
+            { id: 41, title: "Lição 41", theme: "Natureza e Aventura" },
+            { id: 42, title: "Lição 42", theme: "Animais de Estimação" },
+            { id: 43, title: "Lição 43", theme: "Moda e Estilo" },
+            { id: 44, title: "Lição 44", theme: "Jogos Favoritos" },
+            { id: 45, title: "Lição 45", theme: "Finanças Pessoais" },
+            { id: 46, title: "Lição 46", theme: "Cozinhar em Casa" },
+            { id: 47, title: "Lição 47", theme: "Restaurantes Locais" },
+            { id: 48, title: "Lição 48", theme: "Saúde Mental" },
+            { id: 49, title: "Lição 49", theme: "Exercícios Físicos" },
+            { id: 50, title: "Lição 50", theme: "Bebidas Preferidas" },
+            { id: 51, title: "Lição 51", theme: "Networking Profissional" },
+            { id: 52, title: "Lição 52", theme: "Ferramentas de Programação" },
+            { id: 53, title: "Lição 53", theme: "Eventos de Tecnologia" },
+            { id: 54, title: "Lição 54", theme: "Inovação em Tech" },
+            { id: 55, title: "Lição 55", theme: "Histórias de Sucesso" },
+            { id: 56, title: "Lição 56", theme: "Arte e Criatividade" },
+            { id: 57, title: "Lição 57", theme: "Museus e Exposições" },
+            { id: 58, title: "Lição 58", theme: "Teatro e Shows" },
+            { id: 59, title: "Lição 59", theme: "Dança e Movimento" },
+            { id: 60, title: "Lição 60", theme: "Planos de Final de Semana" },
+            { id: 61, title: "Lição 61", theme: "Relacionamentos" },
+            { id: 62, title: "Lição 62", theme: "Casamento e Parcerias" },
+            { id: 63, title: "Lição 63", theme: "Crianças e Família" },
+            { id: 64, title: "Lição 64", theme: "Educação e Estudos" },
+            { id: 65, title: "Lição 65", theme: "Carreira em Tecnologia" },
+            { id: 66, title: "Lição 66", theme: "Entrevistas de Emprego" },
+            { id: 67, title: "Lição 67", theme: "Reuniões de Equipe" },
+            { id: 68, title: "Lição 68", theme: "E-mails Profissionais" },
+            { id: 69, title: "Lição 69", theme: "Telefonemas de Trabalho" },
+            { id: 70, title: "Lição 70", theme: "Apresentações em Tech" },
+            { id: 71, title: "Lição 71", theme: "Negociações Profissionais" },
+            { id: 72, title: "Lição 72", theme: "Viagens de Trabalho" },
+            { id: 73, title: "Lição 73", theme: "Cultura de Startup" },
+            { id: 74, title: "Lição 74", theme: "Tradições Locais" },
+            { id: 75, title: "Lição 75", theme: "Feriados Favoritos" },
+            { id: 76, title: "Lição 76", theme: "Valores Pessoais" },
+            { id: 77, title: "Lição 77", theme: "Assuntos Atuais" },
+            { id: 78, title: "Lição 78", theme: "Notícias de Tecnologia" },
+            { id: 79, title: "Lição 79", theme: "Sustentabilidade" },
+            { id: 80, title: "Lição 80", theme: "Voluntariado" },
+            { id: 81, title: "Lição 81", theme: "Saúde e Bem-Estar" },
+            { id: 82, title: "Lição 82", theme: "Segurança Online" },
+            { id: 83, title: "Lição 83", theme: "Emergências Pessoais" },
+            { id: 84, title: "Lição 84", theme: "Consultas Médicas" },
+            { id: 85, title: "Lição 85", theme: "Cuidados Dentários" },
+            { id: 86, title: "Lição 86", theme: "Serviços de Saúde" },
+            { id: 87, title: "Lição 87", theme: "Aventuras ao Ar Livre" },
+            { id: 88, title: "Lição 88", theme: "Camping e Natureza" },
+            { id: 89, title: "Lição 89", theme: "Praia e Lazer" },
+            { id: 90, title: "Lição 90", theme: "Exploração Urbana" },
+            { id: 91, title: "Lição 91", theme: "Fotografia Pessoal" },
+            { id: 92, title: "Lição 92", theme: "Histórias Locais" },
+            { id: 93, title: "Lição 93", theme: "Geografia e Viagens" },
+            { id: 94, title: "Lição 94", theme: "Astronomia e Ciência" },
+            { id: 95, title: "Lição 95", theme: "Tendências em Tecnologia" },
+            { id: 96, title: "Lição 96", theme: "Inovação Pessoal" },
+            { id: 97, title: "Lição 97", theme: "Empreendedorismo" },
+            { id: 98, title: "Lição 98", theme: "Metas de Longo Prazo" },
+            { id: 99, title: "Lição 99", theme: "Reflexões Pessoais" },
+            { id: 100, title: "Lição 100", theme: "Revisão de Conversação" }
+        ];
+
+        // Função para renderizar as lições
+        function renderLessons(lessonsToRender) {
+            const grid = document.getElementById('lessonsGrid');
+            grid.innerHTML = '';
+
+            lessonsToRender.forEach(lesson => {
+                const card = document.createElement('div');
+                card.className = 'lesson-card';
+
+                card.innerHTML = `
+                    <a href="${lesson.id}.html">
+                        <div class="lesson-number">${lesson.id}</div>
+                        <div class="lesson-title">${lesson.title}</div>
+                        <small>Tema: ${lesson.theme}</small>
+                    </a>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Filtrar lições ao digitar na busca
+        document.getElementById('searchInput').addEventListener('input', function (e) {
+            const searchText = e.target.value.toLowerCase();
+
+            if (searchText === '') {
+                renderLessons(lessons);
+                return;
+            }
+
+            const filteredLessons = lessons.filter(lesson =>
+                lesson.title.toLowerCase().includes(searchText) ||
+                lesson.theme.toLowerCase().includes(searchText)
+            );
+
+            renderLessons(filteredLessons);
+        });
+
+        // Renderizar todas as lições inicialmente
+        renderLessons(lessons);
+    </script>
+</body>
+
+</html>
